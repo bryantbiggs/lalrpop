@@ -21,7 +21,7 @@ pub enum Opcode {
 }
 
 impl Debug for Expr {
-    fn fmt(&self, fmt: &mut Formatter) -> Result<(), Error> {
+    fn fmt(&self, fmt: &mut Formatter<'_>) -> Result<(), Error> {
         use self::Expr::*;
         match *self {
             Number(n) => write!(fmt, "{:?}", n),
@@ -31,8 +31,8 @@ impl Debug for Expr {
     }
 }
 
-impl<'input> Debug for ExprSymbol<'input> {
-    fn fmt(&self, fmt: &mut Formatter) -> Result<(), Error> {
+impl Debug for ExprSymbol<'_> {
+    fn fmt(&self, fmt: &mut Formatter<'_>) -> Result<(), Error> {
         use self::ExprSymbol::*;
         match *self {
             NumSymbol(n) => write!(fmt, "{:?}", n),
@@ -43,7 +43,7 @@ impl<'input> Debug for ExprSymbol<'input> {
 }
 
 impl Debug for Opcode {
-    fn fmt(&self, fmt: &mut Formatter) -> Result<(), Error> {
+    fn fmt(&self, fmt: &mut Formatter<'_>) -> Result<(), Error> {
         use self::Opcode::*;
         match *self {
             Mul => write!(fmt, "*"),
